@@ -8,10 +8,11 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
-
 import { Loader2Icon } from 'lucide-react';
 
 import type { SubmitHandler } from 'react-hook-form';
+import { toast } from 'sonner';
+import { handleAuthLogin } from '@/lib/auth';
 
 const formSchema = z.object({
   email: z.email('Please enter a valid email adress'),
@@ -30,11 +31,20 @@ export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) 
 
   const isLoading = fetcher.state != 'idle';
 
-  useEffect(() => {});
+  useEffect(() => {
+    const error = fetcher.data?.error;
+
+    if (error) {
+      toast.error(error.message);
+    }
+  }, [fetcher.data]);
 
   const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = useCallback((values) => {
-    console.log(values);
-  });
+    fetcher.submit(values, {
+      method: 'POST',
+      encType: 'application/json',
+    });
+  }, []);
 
   return (
     <div className={cn('flex flex-col gap-6 ', className)} {...props}>
@@ -49,7 +59,7 @@ export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='grid gap-6 '>
               <div className='flex flex-col gap-4'>
-                <Button type='button' variant='outline' className='w-full' onClick={() => {}}>
+                <Button type='button' variant='outline' className='w-full' onClick={handleAuthLogin}>
                   Login with Goggle
                 </Button>
               </div>
