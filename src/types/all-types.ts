@@ -57,6 +57,26 @@ type PromptEditorType = {
   onApply: () => void;
 };
 
+type LoginForm = {
+  email: string;
+  password: string;
+};
+
+type SignupForm = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+type ForgotPasswordForm = {
+  email: string;
+};
+
+type ResetPasswordForm = {
+  password: string;
+  confirmPassword: string;
+};
+
 export type {
   File,
   DeleteFileType,
@@ -65,4 +85,8 @@ export type {
   FolderCardType,
   ImgPreviewSidebarType,
   PromptEditorType,
+  LoginForm,
+  SignupForm,
+  ForgotPasswordForm,
+  ResetPasswordForm,
 };

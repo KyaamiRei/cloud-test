@@ -5,13 +5,17 @@ import type { ActionFunction } from 'react-router';
 
 import { account } from '@/lib/appwrite';
 
-export const loginAction: ActionFunction = async ({ request }) => {
-  const data = (await request.json()) as LoginForm;
+export const resetPasswordAction: ActionFunction = async ({ request }) => {
+  const data = (await request.json()) as {
+    userId: string;
+    secret: string;
+    password: string;
+  };
 
   try {
-    await account.createEmailPasswordSession({ ...data });
+    await account.updateRecovery(data);
 
-    return redirect('/drive/home');
+    return redirect('/auth/login');
   } catch (err) {
     if (err instanceof AppwriteException) {
       return { ok: false, error: err };

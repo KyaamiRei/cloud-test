@@ -12,19 +12,21 @@ import { handleAuthLogin } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from './ui/form';
 import { Input } from './ui/input';
 
 const formSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(128, 'Name must be less than 128 charapters'),
   email: z.email('Please enter a valid email adress'),
   password: z.string().min(8, 'Password must be at least 8 charapters long.'),
 });
 
-export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
+export const SignupForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   const fetcher = useFetcher();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
@@ -54,9 +56,9 @@ export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) 
     <div className={cn('flex flex-col gap-6 ', className)} {...props}>
       <Card>
         <CardHeader className='text-center'>
-          <CardTitle className='text-xl'>Welcome Back</CardTitle>
+          <CardTitle className='text-xl'>Create an account</CardTitle>
 
-          <CardDescription>Login with your Goggle account</CardDescription>
+          <CardDescription>Create account with your Goggle account</CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -73,6 +75,20 @@ export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) 
               </div>
 
               <div className='grid gap-6'>
+                <FormField
+                  control={form.control}
+                  name='name'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input type='text' placeholder='Your name' {...field} />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name='email'
@@ -92,19 +108,12 @@ export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) 
                   name='password'
                   render={({ field }) => (
                     <FormItem>
-                      <div className='flex items-center'>
-                        <FormLabel>Password</FormLabel>
-                        <Link
-                          to='/auth/forgoten-password'
-                          className='ml-auto text-sm underline-offset-4 hover:underline'
-                          viewTransition
-                        >
-                          Forgot your password?
-                        </Link>
-                      </div>
+                      <FormLabel>Password</FormLabel>
                       <FormControl>
                         <Input type='password' placeholder='*************' {...field} className='tracking-wider' />
                       </FormControl>
+
+                      <FormDescription>Must be at least 8 charapters.</FormDescription>
 
                       <FormMessage />
                     </FormItem>
@@ -113,14 +122,14 @@ export const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) 
 
                 <Button type='submit' className='w-full' disabled={isLoading}>
                   {isLoading && <Loader2Icon className='animate-spin' />}
-                  Login
+                  Get started
                 </Button>
               </div>
 
               <div className='text-center text-sm'>
-                Don&apos;t have account?{' '}
-                <Link to='/auth/signup' className='underline underline-offset-4' viewTransition>
-                  Signup
+                Already have account?{' '}
+                <Link to='/auth/login' className='underline underline-offset-4' viewTransition>
+                  Login
                 </Link>
               </div>
             </form>

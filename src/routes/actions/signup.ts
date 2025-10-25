@@ -3,15 +3,15 @@ import { AppwriteException } from 'appwrite';
 
 import type { ActionFunction } from 'react-router';
 
-import { account } from '@/lib/appwrite';
+import { account, ID } from '@/lib/appwrite';
 
-export const loginAction: ActionFunction = async ({ request }) => {
-  const data = (await request.json()) as LoginForm;
+export const signupAction: ActionFunction = async ({ request }) => {
+  const data = (await request.json()) as SignupForm;
 
   try {
-    await account.createEmailPasswordSession({ ...data });
+    await account.create({ userId: ID.unique(), ...data });
 
-    return redirect('/drive/home');
+    return redirect('/auth/login');
   } catch (err) {
     if (err instanceof AppwriteException) {
       return { ok: false, error: err };
