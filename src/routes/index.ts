@@ -1,10 +1,15 @@
 import { createBrowserRouter } from 'react-router';
 
+import { AppLayout } from '@/layouts/AppLayout';
 import { ForgotPassword } from '@/pages/auth/ForgotPassword';
 import { Login } from '@/pages/auth/Login';
 import { ResetPassword } from '@/pages/auth/ResetPassword';
 import { RootError } from '@/pages/error/Root';
 import { Signup } from '@/pages/auth/Signup';
+import { FilesPage } from '@/pages/drive/FilesPage';
+import { HomePage } from '@/pages/drive/HomePage';
+import { SettingsPage } from '@/pages/drive/SettingsPage';
+import { UploadPage } from '@/pages/drive/UploadPage';
 import { forgotPasswordAction } from './actions/forgotPassword';
 import { loginAction } from './actions/login';
 import { resetPasswordAction } from './actions/resetPassword';
@@ -42,6 +47,28 @@ export const router = createBrowserRouter([
   },
   {
     path: '/drive',
-    Component: AppLayout
+    Component: AppLayout,
+    children: [
+      {
+        index: true,
+        Component: HomePage,
+      },
+      {
+        path: 'home',
+        Component: HomePage,
+      },
+      {
+        path: 'files',
+        Component: FilesPage,
+      },
+      {
+        path: 'upload',
+        Component: UploadPage,
+      },
+      {
+        path: 'settings',
+        Component: SettingsPage,
+      },
+    ],
   },
 ]);
