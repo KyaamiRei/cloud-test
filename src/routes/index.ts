@@ -9,11 +9,11 @@ import { Signup } from '@/pages/auth/Signup';
 import { FilesPage } from '@/pages/drive/FilesPage';
 import { HomePage } from '@/pages/drive/HomePage';
 import { SettingsPage } from '@/pages/drive/SettingsPage';
-import { UploadPage } from '@/pages/drive/UploadPage';
 import { forgotPasswordAction } from './actions/forgotPassword';
 import { loginAction } from './actions/login';
 import { resetPasswordAction } from './actions/resetPassword';
 import { signupAction } from './actions/signup';
+import { driveLoader } from '@/loaders/drive';
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +48,7 @@ export const router = createBrowserRouter([
   {
     path: '/drive',
     Component: AppLayout,
+    loader: driveLoader,
     children: [
       {
         index: true,
@@ -58,15 +59,11 @@ export const router = createBrowserRouter([
         Component: HomePage,
       },
       {
-        path: 'files',
+        path: 'my-drive',
         Component: FilesPage,
       },
       {
-        path: 'upload',
-        Component: UploadPage,
-      },
-      {
-        path: 'settings',
+        path: 'recent',
         Component: SettingsPage,
       },
     ],
