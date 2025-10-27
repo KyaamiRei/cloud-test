@@ -22,6 +22,7 @@ import { cn } from './../lib/utils';
 import { FolderPlusIcon, Plus, UploadIcon } from 'lucide-react';
 import { SIDEBAR_LINKS } from '@/constants';
 import { NavUser } from './NavUser';
+import { UploadFile } from './UploadFile';
 
 export const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   const { state } = useSidebar();
@@ -52,12 +53,12 @@ export const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) =
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent align='start' side='right' className='w-50 bg-muted'>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setOpenCreateFolder(true)}>
                     <FolderPlusIcon className='mr-2 size-4' />
                     Create Folder
                   </DropdownMenuItem>
 
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setOpenUpload(true)}>
                     <UploadIcon className='mr-2 size-4' />
                     Upload File
                   </DropdownMenuItem>
@@ -87,6 +88,8 @@ export const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) =
 
         <SidebarRail />
       </Sidebar>
+
+      <UploadFile open={openUpload} onOpenChange={setOpenUpload} />
     </>
   );
 };

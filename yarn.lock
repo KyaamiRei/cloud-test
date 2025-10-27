@@ -587,6 +587,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@imagekit/javascript@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "@imagekit/javascript@npm:5.1.0"
+  checksum: 10c0/9a3eeeaf2fe0538b979c4713fdf8f4becad784f081da90794a9bcd3300894d6be1d6f40f367ac131c242aac7532c5633216936385b51f43a93e433254f3862f9
+  languageName: node
+  linkType: hard
+
+"@imagekit/react@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@imagekit/react@npm:5.0.1"
+  dependencies:
+    "@imagekit/javascript": "npm:^5.1.0"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/1c0505cad86ae5b6f1d28632ab9b2f083e096aa2b8c432c49a6def775067748b2262fde817bb9bedcd080441f76d0a09a65380865dc4ddaaabfcd87ac0ecd9af
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -1099,6 +1118,26 @@ __metadata:
     "@types/react-dom":
       optional: true
   checksum: 10c0/fdff9b84913bb4172ef6d3af7442fca5f9bba5f2709cba08950071f819d7057aec3a4a2d9ef44cf9cbfb8014d02573c6884a04cff175895823aaef809ebdb034
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-progress@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "@radix-ui/react-progress@npm:1.1.7"
+  dependencies:
+    "@radix-ui/react-context": "npm:1.1.2"
+    "@radix-ui/react-primitive": "npm:2.1.3"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 10c0/bed5349682a75db02d362c07ac99fefddbbdc0152c4d5035719498223b9d490ebd834e2d9f64d498424048eb3da7eb7e55ba696e202cd0a048d6e319390e69d3
   languageName: node
   linkType: hard
 
@@ -2134,10 +2173,12 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.36.0"
     "@hookform/resolvers": "npm:^5.2.2"
+    "@imagekit/react": "npm:^5.0.1"
     "@radix-ui/react-avatar": "npm:^1.1.10"
     "@radix-ui/react-dialog": "npm:^1.1.15"
     "@radix-ui/react-dropdown-menu": "npm:^2.1.16"
     "@radix-ui/react-label": "npm:^2.1.7"
+    "@radix-ui/react-progress": "npm:^1.1.7"
     "@radix-ui/react-separator": "npm:^1.1.7"
     "@radix-ui/react-slot": "npm:^1.2.3"
     "@radix-ui/react-tooltip": "npm:^1.2.8"
